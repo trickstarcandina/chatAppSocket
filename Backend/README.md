@@ -1,2 +1,0 @@
-Java socket
-Spring support 
