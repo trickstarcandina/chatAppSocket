@@ -1,6 +1,8 @@
-package com.server.chat.model;
+package com.server.chat.worker;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.server.chat.model.LoginRequest;
+import com.server.chat.model.Message;
+import com.server.chat.model.UserSocket;
 import org.springframework.stereotype.Component;
 
 import java.io.DataInputStream;
@@ -10,12 +12,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class SocketServer {
+public class SocketWorker {
     private ServerSocket serverSocket;
     private Socket socket;
 
@@ -23,7 +24,7 @@ public class SocketServer {
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private DataOutputStream dos;
-    private Map<String, User> users = new HashMap<>();
+    private Map<Integer, UserSocket> users = new HashMap<>();
 
     public void openConnection() {
         try {
@@ -38,14 +39,14 @@ public class SocketServer {
                 Object object = ois.readObject();
                 if (object instanceof LoginRequest) {
                     LoginRequest request = (LoginRequest) object;
-                    System.out.println(request.getUsername());
-                    users.put(request.getUsername(), new User(request.getUsername(), dis, ois, oos, dos));
+                    System.out.println(request.getId());
+                    users.put(request.getId(), new UserSocket(request.getId(), dis, ois, oos, dos));
                 }
                 else {
                     Message message = (Message) object;
-                    System.out.println(message.getContent() + " " + message.getSender());
-                    User to = users.get(message.getSendTo());
-                    to.getOos().writeObject(message);
+//                    System.out.println(message.getContent() + " " + message.getSender());
+//                    UserSocket to = users.get(message.getSendTo());
+//                    to.getOos().writeObject(message);
                 }
 
             }

@@ -1,31 +1,24 @@
 package com.server.chat.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import java.util.List;
 
+@Entity
+@Table(name = "users")
 @Getter
 @Setter
-public class User {
+public class User extends BaseEntity {
     private String username;
-    private DataInputStream dis;
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos;
-    private DataOutputStream dos;
+    private String password;
+    private String nickName;
+    private String address;
+    private boolean status;
 
-    public User() {
-    }
-
-    public User(String username, DataInputStream dis, ObjectInputStream ois, ObjectOutputStream oos, DataOutputStream dos) {
-        this.username = username;
-        this.dis = dis;
-        this.ois = ois;
-        this.oos = oos;
-        this.dos = dos;
-    }
+    @ManyToMany(mappedBy = "users")
+    private List<Conversation> conversations;
 }

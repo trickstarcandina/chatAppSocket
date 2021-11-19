@@ -1,19 +1,19 @@
 package com.server.chat.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 
-@Data
-public class Message implements Serializable {
+@Entity
+@Table(name = "message")
+@Getter
+@Setter
+public class Message extends BaseEntity implements Serializable{
     static final long serialVersionUID = 1L;
     private String content;
-    private String sender;
-    private String sendTo;
-
-    public Message(String content, String sender, String sendTo) {
-        this.content = content;
-        this.sender = sender;
-        this.sendTo = sendTo;
-    }
+    private Integer userId;
+    private Integer groupId;
 }
