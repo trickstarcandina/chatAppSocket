@@ -27,7 +27,7 @@ public class SocketServer {
 
     public void openConnection() {
         try {
-            serverSocket = new ServerSocket(9090);
+            serverSocket = new ServerSocket(30601);
             System.out.println("Server is open");
             while (true) {
                 socket = serverSocket.accept();
