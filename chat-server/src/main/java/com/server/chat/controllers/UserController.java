@@ -22,6 +22,6 @@ public class UserController {
     public ResponseEntity<User> updateInfoUser(@RequestBody User user) {
         // Thắng đang làm cập nhật thông tin user này nhưng chưa xong
         // mng ko làm trùng của tôi nhé :))
-
+        return null;
     }
 }
