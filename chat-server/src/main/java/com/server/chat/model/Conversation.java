@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "conversations")
+@Table(name = "conversation")
 @Setter
 @Getter
 public class Conversation extends BaseEntity {
@@ -24,7 +25,7 @@ public class Conversation extends BaseEntity {
     private boolean isGroup;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_conversation",
             joinColumns = @JoinColumn(name = "conversation_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))

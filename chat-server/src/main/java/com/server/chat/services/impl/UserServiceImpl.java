@@ -1,18 +1,25 @@
 package com.server.chat.services.impl;
 
+import com.server.chat.dto.MyUserDetails;
 import com.server.chat.model.Conversation;
 import com.server.chat.model.User;
 import com.server.chat.repositories.ConversationRepository;
 import com.server.chat.repositories.UserRepository;
 import com.server.chat.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -30,5 +37,15 @@ public class UserServiceImpl implements UserService {
             }
         }
         return user;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        if (user == null)
+            throw new UsernameNotFoundException("Not found username : " + username);
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        return new MyUserDetails(user.getUsername(), user.getPassword(), true, true,
+                true, true , authorities, user);
     }
 }
