@@ -1,5 +1,8 @@
 package com.server.chat.services.impl;
 
+import com.server.chat.core.response.BaseResponse;
+import com.server.chat.core.response.Response;
+import com.server.chat.core.response.ResponseBuilder;
 import com.server.chat.dto.MyUserDetails;
 import com.server.chat.model.Conversation;
 import com.server.chat.model.User;
@@ -13,6 +16,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,8 +31,12 @@ public class UserServiceImpl implements UserService {
     private final ConversationRepository conversationRepository;
 
     @Override
-    public User create(User user) {
-        user = userRepository.save(user);
+    public Response create(User user) {
+        if(userRepository.checkUserNameExists(user.getUsername()) > 0){
+            return ResponseBuilder.ok(201,"Username đã tồn tại, vui lòng chọn một username khác");
+        } else {
+            user = userRepository.save(user);
+        }
         List<User> users = userRepository.findAll();
         for (User u : users) {
             if (!u.getId().equals(user.getId())) {
@@ -36,7 +45,7 @@ public class UserServiceImpl implements UserService {
                 conversationRepository.save(conversation);
             }
         }
-        return user;
+        return ResponseBuilder.ok(user);
     }
 
     @Override
@@ -52,5 +61,11 @@ public class UserServiceImpl implements UserService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         return new MyUserDetails(user.getUsername(), user.getPassword(), true, true,
                 true, true , authorities, user);
+    }
+
+    @Override
+    public String updateInforUser(User user){
+        userRepository.updateUser(user.getAddress(), user.getNickName(), user.getPassword(), user.getUsername());
+        return "Cập nhật thông tin tài khoản thành công";
     }
 }
