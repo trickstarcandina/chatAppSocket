@@ -5,9 +5,9 @@ import java.io.Serializable;
 
 public class LoginRequest implements Serializable {
     static final long serialVersionUID = 2L;
-    private String username;
+    private int id;
 
-    public LoginRequest(String username) {
-        this.username = username;
+    public LoginRequest(Integer id) {
+        this.id = id;
     }
 }
