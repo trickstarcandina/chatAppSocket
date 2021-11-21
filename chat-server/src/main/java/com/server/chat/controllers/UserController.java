@@ -7,11 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -31,5 +27,12 @@ public class UserController {
     public ResponseEntity<User> create(@RequestBody User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         return ResponseEntity.ok(userService.create(user));
+    }
+
+    @RequestMapping(value = "updateInfoUser", method = RequestMethod.POST)
+    public ResponseEntity<User> updateInfoUser(@RequestBody User user) {
+        // Thắng đang làm cập nhật thông tin user này nhưng chưa xong
+        // mng ko làm trùng của tôi nhé :))
+        return null;
     }
 }
