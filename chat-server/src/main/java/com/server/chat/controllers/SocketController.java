@@ -14,9 +14,14 @@ public class SocketController {
 
     private SocketWorker socketServer;
 
-    @PostMapping("/")
+    @PostMapping("/open")
     public void openConnection() {
         socketServer.openConnection();
+    }
+
+    @PostMapping("/close")
+    public void closeConnection() {
+        socketServer.closeConnection();
     }
 
     @GetMapping("/")

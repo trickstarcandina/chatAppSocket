@@ -9,6 +9,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 @AllArgsConstructor
@@ -21,6 +23,11 @@ public class UserController {
     public ResponseEntity<User> getUser() {
         MyUserDetails myUserDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return ResponseEntity.ok(myUserDetails.getUser());
+    }
+
+    @GetMapping("/conversation")
+    private ResponseEntity<List<User>> getUsersByConversation(@RequestParam("conversationId") Integer conversationId) {
+        return ResponseEntity.ok(userService.getUsersByConversationId(conversationId));
     }
 
     @PostMapping

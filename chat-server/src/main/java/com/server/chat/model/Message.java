@@ -11,9 +11,9 @@ import java.io.Serializable;
 @Table(name = "message")
 @Getter
 @Setter
-public class Message extends BaseEntity implements Serializable{
+public class Message extends BaseEntity implements Serializable {
     static final long serialVersionUID = 1L;
     private String content;
     private Integer userId;
-    private Integer groupId;
+    private Integer conversationId;
 }

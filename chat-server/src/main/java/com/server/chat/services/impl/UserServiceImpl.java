@@ -40,6 +40,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getUsersByConversationId(Integer conversationId) {
+        return userRepository.findUsersByConversationId(conversationId);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user == null)
