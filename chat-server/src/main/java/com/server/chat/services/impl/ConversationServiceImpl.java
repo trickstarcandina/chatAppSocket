@@ -12,15 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ConversationServiceImpl implements ConversationService {
 
-    private final ConversationRepository conversationRepository;
+	private final ConversationRepository conversationRepository;
 
-    @Override
-    public Conversation create(Conversation conversation) {
-        return conversationRepository.save(conversation);
-    }
+	@Override
+	public Conversation create(Conversation conversation) {
+		return conversationRepository.save(conversation);
+	}
 
-    @Override
-    public Conversation findById(Integer id) {
-        return conversationRepository.findById(id).orElse(null);
-    }
+	@Override
+	public Conversation findById(Integer id) {
+		return conversationRepository.findById(id).orElse(null);
+	}
+
 }

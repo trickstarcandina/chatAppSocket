@@ -1,6 +1,5 @@
 package com.server.chat.services;
 
-import com.server.chat.core.response.BaseResponse;
 import com.server.chat.core.response.Response;
 import com.server.chat.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
