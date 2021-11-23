@@ -23,9 +23,4 @@ public class ConversationController {
     public ResponseEntity<Conversation> findById(@RequestParam("id") Integer id) {
         return ResponseEntity.ok(conversationService.findById(id));
     }
-    
-    @GetMapping("/user")
-    private ResponseEntity<List<Conversation>> getConversationsByUser(@RequestParam("userId") Integer userId){
-    	return ResponseEntity.ok(conversationService.getConversationsByUserId(userId));
-    }
 }

@@ -18,11 +18,6 @@ public class MessageServiceImpl implements MessageService {
 	private final MessageRepository messageRepository;
 
 	@Override
-	public List<Message> getMessagesByUserId(Integer userId) {
-		return messageRepository.findMessagesByUserId(userId);
-	}
-
-	@Override
 	public List<Message> getMessagesByConversationId(Integer conversationId) {
 		return messageRepository.findMessagesByConversationId(conversationId);
 	}

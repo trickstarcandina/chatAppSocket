@@ -27,8 +27,4 @@ public class ConversationServiceImpl implements ConversationService {
         return conversationRepository.findById(id).orElse(null);
     }
 
-	@Override
-	public List<Conversation> getConversationsByUserId(Integer userId) {
-		return conversationRepository.findConversationsByUserId(userId);
-	}
 }

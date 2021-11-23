@@ -19,11 +19,6 @@ import lombok.AllArgsConstructor;
 public class MessageController {
 	private MessageService messageService;
 	
-	@GetMapping("/user")
-    private ResponseEntity<List<Message>> getMessagesByUser(@RequestParam("userId") Integer userId){
-    	return ResponseEntity.ok(messageService.getMessagesByUserId(userId));
-    }
-	
 	@GetMapping("/conversation")
     private ResponseEntity<List<Message>> getMessagesByConvarsation(@RequestParam("conversationId") Integer conversationId){
     	return ResponseEntity.ok(messageService.getMessagesByConversationId(conversationId));
