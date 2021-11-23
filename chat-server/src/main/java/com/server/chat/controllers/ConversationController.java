@@ -3,6 +3,9 @@ package com.server.chat.controllers;
 import com.server.chat.model.Conversation;
 import com.server.chat.services.ConversationService;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +22,10 @@ public class ConversationController {
     @GetMapping
     public ResponseEntity<Conversation> findById(@RequestParam("id") Integer id) {
         return ResponseEntity.ok(conversationService.findById(id));
+    }
+    
+    @GetMapping("/user")
+    private ResponseEntity<List<Conversation>> getConversationsByUser(@RequestParam("userId") Integer userId){
+    	return ResponseEntity.ok(conversationService.getConversationsByUserId(userId));
     }
 }
