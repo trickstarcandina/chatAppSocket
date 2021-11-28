@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class ConversationController {
 
-    private ConversationService conversationService;
+	private ConversationService conversationService;
 
-    @GetMapping
-    public ResponseEntity<Conversation> findById(@RequestParam("id") Integer id) {
-        return ResponseEntity.ok(conversationService.findById(id));
-    }
+	@GetMapping
+	public ResponseEntity<Conversation> findById(@RequestParam("id") Integer id) {
+		return ResponseEntity.ok(conversationService.findById(id));
+	}
 }
