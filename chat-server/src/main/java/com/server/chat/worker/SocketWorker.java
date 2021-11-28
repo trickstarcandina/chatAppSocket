@@ -10,6 +10,7 @@ import com.server.chat.repositories.MessagePendingRepository;
 import com.server.chat.repositories.MessageRepository;
 import com.server.chat.services.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,22 +26,22 @@ import java.util.List;
 import java.util.Map;
 
 @Component
+@Slf4j
 public class SocketWorker {
-    private ServerSocket serverSocket;
-    private Socket socket;
-
-    private DataInputStream dis;
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos;
-    private DataOutputStream dos;
-    private Map<Integer, UserSocket> userSocketMap = new HashMap<>();
-
     @Autowired
     private UserService userService;
     @Autowired
     private MessageRepository messageRepository;
     @Autowired
     private MessagePendingRepository messagePendingRepository;
+
+    private ServerSocket serverSocket;
+    private Socket socket;
+    private DataInputStream dis;
+    private ObjectInputStream ois;
+    private ObjectOutputStream oos;
+    private DataOutputStream dos;
+    private Map<Integer, UserSocket> userSocketMap = new HashMap<>();
 
     public void openConnection() {
         try {
@@ -55,36 +56,46 @@ public class SocketWorker {
                 Object object = ois.readObject();
                 if (object instanceof LoginRequest) {
                     LoginRequest request = (LoginRequest) object;
-                    System.out.println("Accepted "+ request.getId());
-                    List<MessagePending> messagePendings = messagePendingRepository.findByUser(request.getId());
-                    for (MessagePending messagePending : messagePendings) {
-                        oos.writeObject(messagePending.getMessage());
-                    }
-                    messagePendingRepository.deleteAll(messagePendings);
-                    userSocketMap.put(request.getId(), new UserSocket(request.getId(), dis, ois, oos, dos));
+                    log.info("Socket connect success with user id: " + request.getId());
+                    sendPendingMessage(request);
                 }
                 if (object instanceof Message) {
                     Message message = (Message) object;
-                    System.out.println(message.getContent() + " " + message.getUserId());
-                    message = messageRepository.save(message);
-                    List<User> users = userService.getUsersByConversationId(message.getConversationId());
-                    for (User user : users) {
-                        UserSocket to = userSocketMap.get(user.getId());
-                        if (to != null) {
-                            to.getOos().writeObject(message);
-                        }
-                        else {
-                            MessagePending messagePending = new MessagePending();
-                            messagePending.setUser(user);
-                            messagePending.setMessage(message);
-                            messagePendingRepository.save(messagePending);
-                        }
-                    }
+                    receiveMessage(message);
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            log.error("Error " + e.getLocalizedMessage());
+            closeConnection();
+            openConnection();
         }
+    }
+
+    private void receiveMessage(Message message) throws IOException {
+        System.out.println(message.getContent() + " " + message.getUserId());
+        message = messageRepository.save(message);
+        List<User> users = userService.getUsersByConversationId(message.getConversationId());
+        for (User user : users) {
+            UserSocket to = userSocketMap.get(user.getId());
+            if (to != null) {
+                to.getOos().writeObject(message);
+            }
+            else {
+                MessagePending messagePending = new MessagePending();
+                messagePending.setUser(user);
+                messagePending.setMessage(message);
+                messagePendingRepository.save(messagePending);
+            }
+        }
+    }
+
+    private void sendPendingMessage(LoginRequest request) throws IOException {
+        List<MessagePending> messagePendings = messagePendingRepository.findByUser(request.getId());
+        for (MessagePending messagePending : messagePendings) {
+            oos.writeObject(messagePending.getMessage());
+        }
+        messagePendingRepository.deleteAll(messagePendings);
+        userSocketMap.put(request.getId(), new UserSocket(request.getId(), dis, ois, oos, dos));
     }
 
     public void closeConnection() {
