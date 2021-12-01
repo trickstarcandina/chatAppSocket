@@ -40,11 +40,7 @@ public class SocketWorker {
 
     private ServerSocket serverSocket;
     private Socket socket;
-    private DataInputStream dis;
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos;
-    private DataOutputStream dos;
-    private Map<Integer, UserSocket> userSocketMap = new HashMap<>();
+    public static Map<Integer, UserSocket> userSocketMap = new HashMap<>();
 
     public void openConnection() {
         try {
@@ -52,72 +48,14 @@ public class SocketWorker {
             System.out.println("Server is open");
             while (true) {
                 socket = serverSocket.accept();
-                ois = new ObjectInputStream(socket.getInputStream());
-                dis = new DataInputStream(socket.getInputStream());
-                dos = new DataOutputStream(socket.getOutputStream());
-                oos = new ObjectOutputStream(socket.getOutputStream());
-                Object object = ois.readObject();
-                System.out.println(object.toString());
-                if (object instanceof LoginRequest) {
-                    LoginRequest request = (LoginRequest) object;
-                    log.info("Socket connect success with user id: " + request.getId());
-                    userSocketMap.put(request.getId(), new UserSocket(request.getId(), dis, ois, oos, dos));
-                    sendPendingMessage(request);
-                }
-                if (object instanceof CreateGroupRequest) {
-                    CreateGroupRequest request = (CreateGroupRequest) object;
-                    createConversation(request);
-                    log.info("Create group success");
-                }
-                if (object instanceof Message) {
-                    Message message = (Message) object;
-                    receiveMessage(message);
-                }
+                new ClientWorker(socket, userService, messageRepository,
+                        messagePendingRepository, conversationRepository,
+                        userRepository).start();
             }
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             log.error("Error " + e.getLocalizedMessage());
             closeConnection();
             openConnection();
-        }
-    }
-
-    private void receiveMessage(Message message) throws IOException {
-        System.out.println(message.getContent() + " " + message.getUserId());
-        message = messageRepository.save(message);
-        List<User> users = userService.getUsersByConversationId(message.getConversationId());
-        for (User user : users) {
-            UserSocket to = userSocketMap.get(user.getId());
-            if (to != null) {
-                to.getOos().writeObject(message);
-            }
-            else {
-                MessagePending messagePending = new MessagePending();
-                messagePending.setUser(user);
-                messagePending.setMessage(message);
-                messagePendingRepository.save(messagePending);
-            }
-        }
-    }
-
-    private void sendPendingMessage(LoginRequest request) throws IOException {
-        List<MessagePending> messagePendings = messagePendingRepository.findByUser(request.getId());
-        for (MessagePending messagePending : messagePendings) {
-            oos.writeObject(messagePending.getMessage());
-        }
-        messagePendingRepository.deleteAll(messagePendings);
-    }
-
-    private void createConversation(CreateGroupRequest request) throws IOException {
-        Conversation conversation = new Conversation();
-        conversation.setGroup(true);
-        conversation.setName(request.getName());
-        conversation.setUsers(userRepository.findAllById(request.getUserIds()));
-        conversation = conversationRepository.save(conversation);
-        for (Integer userId : request.getUserIds()) {
-            UserSocket to = userSocketMap.get(userId);
-            if (to != null) {
-                to.getOos().writeObject(conversation);
-            }
         }
     }
 
