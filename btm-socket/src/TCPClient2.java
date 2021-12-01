@@ -12,7 +12,7 @@ public class TCPClient2 {
 
     public void connection() {
         try {
-            mySocket = new Socket("localhost", 30601);
+            mySocket = new Socket("34.122.94.78", 30601);
         } catch (IOException e) {
             System.err.println(e);
         }
@@ -35,9 +35,7 @@ public class TCPClient2 {
             while (true) {
                 String content = scanner.nextLine();
                 Message message = new Message(content, 2, 1);
-                client.connection();
-                Sender newSender = new Sender(client.mySocket);
-                newSender.sendObject(message);
+                sender.sendObject(message);
             }
         });
         thread.start();
