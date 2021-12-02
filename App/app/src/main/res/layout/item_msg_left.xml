@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.7">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar_message"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:padding="5dp"
+            android:src="@drawable/ic_person"
+            app:civ_border_color="#FDF7ED"
+            app:civ_border_width="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sender_username" />
+
+        <TextView
+            android:id="@+id/messageLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/border_msg_left"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="5dp"
+            android:text="message"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@+id/avatar_message"
+            app:layout_constraintTop_toBottomOf="@+id/tv_sender_username" />
+
+        <TextView
+            android:id="@+id/tv_sender_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="5dp"
+            android:text="message"
+            android:textAppearance="@style/SenderUsername"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@+id/messageLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="SmallSp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

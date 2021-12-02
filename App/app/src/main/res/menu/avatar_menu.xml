@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/change"
+        android:icon="@drawable/ic_email"
+        android:title="Change avatar"/>
+    <item android:id="@+id/view_avatar"
+        android:icon="@drawable/ic_online"
+        android:title="View avatar"/>
+</menu>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:gravity="center"
+    android:background="@drawable/border_layout"
+    android:elevation="5dp"
+    android:layout_height="150dp">
+    <ImageView
+        android:layout_margin="10dp"
+        android:id="@+id/photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        android:scaleType="centerCrop"
+        android:background="@drawable/border_layout"
+        android:padding="5dp"
+        />
+</LinearLayout>
