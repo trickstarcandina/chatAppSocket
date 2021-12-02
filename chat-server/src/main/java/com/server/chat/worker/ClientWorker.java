@@ -2,6 +2,7 @@ package com.server.chat.worker;
 
 import com.server.chat.model.Conversation;
 import com.server.chat.model.CreateGroupRequest;
+import com.server.chat.model.GetAllUserRequest;
 import com.server.chat.model.LoginRequest;
 import com.server.chat.model.Message;
 import com.server.chat.model.MessagePending;
@@ -20,7 +21,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class ClientWorker extends Thread {
@@ -77,6 +81,10 @@ public class ClientWorker extends Thread {
                     Message message = (Message) object;
                     receiveMessage(message);
                 }
+                if (object instanceof GetAllUserRequest) {
+                    GetAllUserRequest request = (GetAllUserRequest) object;
+                    getAllUsers(request);
+                }
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -123,4 +131,16 @@ public class ClientWorker extends Thread {
             }
         }
     }
+
+    private void getAllUsers(GetAllUserRequest request) throws IOException {
+        List<User> users = userRepository.findAll().stream().map(user -> {
+            user.setConversations(null);
+            return user;
+        }).collect(Collectors.toList());
+        UserSocket to = SocketWorker.userSocketMap.get(request.getId());
+        if (to != null) {
+            to.getOos().writeObject(users);
+        }
+    }
+
 }
