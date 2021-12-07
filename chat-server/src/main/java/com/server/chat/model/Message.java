@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -35,4 +36,10 @@ public class Message implements Serializable {
     private String content;
     private Integer userId;
     private Integer conversationId;
+    private String url;
+
+    @Transient
+    private byte[] bytes;
+    @Transient
+    private String contentType;
 }

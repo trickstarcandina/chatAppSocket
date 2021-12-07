@@ -12,6 +12,7 @@ import com.server.chat.repositories.ConversationRepository;
 import com.server.chat.repositories.MessagePendingRepository;
 import com.server.chat.repositories.MessageRepository;
 import com.server.chat.repositories.UserRepository;
+import com.server.chat.services.MessageService;
 import com.server.chat.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,19 +36,19 @@ public class ClientWorker extends Thread {
     private ObjectOutputStream oos;
     private DataOutputStream dos;
     private final UserService userService;
-    private final MessageRepository messageRepository;
+    private final MessageService messageService;
     private final MessagePendingRepository messagePendingRepository;
     private final ConversationRepository conversationRepository;
     private final UserRepository userRepository;
 
     public ClientWorker(Socket socket, UserService userService,
-                        MessageRepository messageRepository,
+                        MessageService messageService,
                         MessagePendingRepository messagePendingRepository,
                         ConversationRepository conversationRepository,
                         UserRepository userRepository) {
         this.socket = socket;
         this.userService = userService;
-        this.messageRepository = messageRepository;
+        this.messageService = messageService;
         this.messagePendingRepository = messagePendingRepository;
         this.conversationRepository = conversationRepository;
         this.userRepository = userRepository;
@@ -94,7 +95,7 @@ public class ClientWorker extends Thread {
 
     private void receiveMessage(Message message) throws IOException {
         System.out.println(message.getContent() + " " + message.getUserId());
-        message = messageRepository.save(message);
+        message = messageService.save(message);
         List<User> users = userService.getUsersByConversationId(message.getConversationId());
         for (User user : users) {
             UserSocket to = SocketWorker.userSocketMap.get(user.getId());
