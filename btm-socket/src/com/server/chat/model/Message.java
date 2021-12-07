@@ -11,11 +11,45 @@ public class Message implements Serializable {
     private String content;
     private Integer userId;
     private Integer conversationId;
+    private String url;
+    private byte[] bytes;
+    private String contentType;
 
     public Message(String content, Integer userId, Integer conversationId) {
         this.content = content;
         this.userId = userId;
         this.conversationId = conversationId;
+    }
+
+    public Message(Integer userId, Integer conversationId, byte[] bytes, String contentType) {
+        this.userId = userId;
+        this.conversationId = conversationId;
+        this.bytes = bytes;
+        this.contentType = contentType;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
     public Integer getId() {
