@@ -40,6 +40,7 @@ public class User implements Serializable {
     private String password;
     private String nickName;
     private String address;
+    private String avatarUrl;
     private boolean status;
 
     @ManyToMany(fetch = FetchType.EAGER)

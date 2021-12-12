@@ -39,7 +39,7 @@ public class Message implements Serializable {
     private String url;
 
     @Transient
-    private byte[] bytes;
+    private String bytes;
     @Transient
     private String contentType;
 }

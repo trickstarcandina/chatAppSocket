@@ -6,6 +6,7 @@ import com.server.chat.model.GetAllUserRequest;
 import com.server.chat.model.LoginRequest;
 import com.server.chat.model.Message;
 import com.server.chat.model.MessagePending;
+import com.server.chat.model.UpdateUserRequest;
 import com.server.chat.model.User;
 import com.server.chat.model.UserSocket;
 import com.server.chat.repositories.ConversationRepository;
@@ -64,6 +65,7 @@ public class ClientWorker extends Thread {
 
     @Override
     public void run() {
+        System.out.println("Start");
         try {
             while (true) {
                 Object object = this.ois.readObject();
@@ -85,6 +87,11 @@ public class ClientWorker extends Thread {
                 if (object instanceof GetAllUserRequest) {
                     GetAllUserRequest request = (GetAllUserRequest) object;
                     getAllUsers(request);
+                }
+                if (object instanceof UpdateUserRequest) {
+                    System.out.println("received");
+                    UpdateUserRequest request = (UpdateUserRequest) object;
+                    updateUser(request);
                 }
             }
         } catch (IOException | ClassNotFoundException e) {
@@ -142,6 +149,18 @@ public class ClientWorker extends Thread {
         if (to != null) {
             to.getOos().writeObject(users);
         }
+    }
+
+    private void updateUser(UpdateUserRequest request) throws IOException {
+        User user = userService.updateUser(request);
+        if (user != null) {
+            UserSocket to = SocketWorker.userSocketMap.get(request.getUserId());
+            if (to != null) {
+                to.getOos().writeObject(user);
+            }
+        }
+        else
+            log.error("Update avatar failure");
     }
 
 }
