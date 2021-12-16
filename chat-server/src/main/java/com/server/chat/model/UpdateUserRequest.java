@@ -15,6 +15,6 @@ public class UpdateUserRequest implements Serializable {
     private String username;
     private String nickName;
     private String password;
-    private String bytes;
+    private byte[] bytes;
     private String contentType;
 }

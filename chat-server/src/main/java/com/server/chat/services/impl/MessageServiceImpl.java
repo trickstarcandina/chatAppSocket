@@ -31,7 +31,7 @@ public class MessageServiceImpl implements MessageService {
 	public Message save(Message message) {
 		if (message.getContentType() != null && message.getBytes() != null) {
 			String name = message.getUserId() +"-"+ LocalDateTime.now() + "." + message.getContentType();
-			minioService.upload(folder, name, new ByteArrayInputStream(message.getBytes().getBytes()));
+			minioService.upload(folder, name, new ByteArrayInputStream(message.getBytes()));
 			String url = folder + name;
 			message.setUrl(url);
 		}

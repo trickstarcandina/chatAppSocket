@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
             }
             if (request.getBytes() != null && request.getContentType() != null) {
                 String name = request.getUserId() +"-"+ LocalDateTime.now() + "." + request.getContentType();
-                minioService.upload(folder, name, new ByteArrayInputStream(request.getBytes().getBytes()));
+                minioService.upload(folder, name, new ByteArrayInputStream(request.getBytes()));
                 String url = folder + name;
                 user.setAvatarUrl(url);
                 System.out.println("update avatar success");
