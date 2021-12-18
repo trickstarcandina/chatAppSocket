@@ -1,8 +1,9 @@
 package com.example.chattogether.data.api;
 
 import com.example.chattogether.data.auth.LoginRequest;
+import com.example.chattogether.data.model.ConversationInfo;
 import com.example.chattogether.data.model.MessageResponseItem;
-import com.example.chattogether.data.model.User;
+import com.example.chattogether.data.model.UserResponse;
 
 import java.util.List;
 
@@ -19,9 +20,13 @@ public interface ApiService {
     Call<String> loginRequest(@Body LoginRequest loginRequest);
 
     @GET("api/user")
-    Call<User> getUserInfo(@Header("Authorization") String token);
+    Call<UserResponse> getUserInfo(@Header("Authorization") String token);
 
     @GET("/api/message/conversation/")
     Call<List<MessageResponseItem>> getMessageByConversationId(@Query("conversationId") int conversationId);
+
+    @GET("api/user/conversation")
+    Call<List<ConversationInfo>> getConversationInfo(@Query("conversationId") String conversationId);
+
 
 }

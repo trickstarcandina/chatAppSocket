@@ -16,6 +16,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/im_avatar_add_group"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="@dimen/d5"
+        android:buttonTint="@color/app_primary_color"
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView

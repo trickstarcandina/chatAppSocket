@@ -1,7 +1,5 @@
 package utils;
 
-import com.example.chattogether.ui.service.OnInitializedSocketStream;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;

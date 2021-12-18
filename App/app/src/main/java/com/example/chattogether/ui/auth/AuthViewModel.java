@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class AuthViewModel extends ViewModel {
 
-    private MutableLiveData<String> accessToken;
+    static MutableLiveData<String> accessToken;
 
     public void login(LoginRequest loginRequest) {
         ApiService apiService = TempClient.getInstance();
@@ -39,8 +39,8 @@ public class AuthViewModel extends ViewModel {
     public MutableLiveData<String> getAccessToken(LoginRequest loginRequest) {
         if (accessToken == null) {
             accessToken = new MutableLiveData<>();
-            login(loginRequest);
         }
+        login(loginRequest);
         return accessToken;
     }
 

@@ -64,16 +64,6 @@
                 android:textColor="#1C1C1C"
                 android:textSize="17sp" />
 
-            <TextView
-                android:id="@+id/text_last_msg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="TextView"
-                android:textColor="#000000"
-                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
 

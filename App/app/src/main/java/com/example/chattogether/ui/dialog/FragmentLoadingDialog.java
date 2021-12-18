@@ -1,6 +1,5 @@
 package com.example.chattogether.ui.dialog;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,19 +8,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.chattogether.R;
-import com.example.chattogether.data.auth.UserT;
-import com.example.chattogether.databinding.FragmentAddFriendDialogBinding;
-import com.example.chattogether.ui.home.HomeViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FragmentLoadingDialog extends DialogFragment {
 
@@ -29,7 +18,7 @@ public class FragmentLoadingDialog extends DialogFragment {
     Context mContext;
 
 
-    public  FragmentLoadingDialog() {
+    public FragmentLoadingDialog() {
     }
 
     @Override
@@ -43,6 +32,7 @@ public class FragmentLoadingDialog extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
     }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
