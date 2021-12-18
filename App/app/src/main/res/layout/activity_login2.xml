@@ -36,14 +36,14 @@
                 android:drawablePadding="10dp"
                 android:ems="10"
                 android:hint="Username"
-                android:text="thanh"
+                android:text=""
                 android:inputType="textPersonName"
                 android:padding="12dp"
                 android:textColor="@color/black"
                 android:textColorHint="#222121" />
 
             <EditText
-                android:text="1"
+                android:text=""
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

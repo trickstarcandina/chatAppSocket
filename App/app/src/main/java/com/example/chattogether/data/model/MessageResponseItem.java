@@ -7,6 +7,64 @@ public class MessageResponseItem {
     int id;
     String updatedAt;
     int userId;
+    private String url;
+    private byte[] bytes;
+    private String contentType;
+
+    public MessageResponseItem(String content, int conversationId, String createdAt, int id, String updatedAt, String url, byte[] bytes, String contentType, int userId) {
+        this.content = content;
+        this.conversationId = conversationId;
+        this.createdAt = createdAt;
+        this.id = id;
+        this.updatedAt = updatedAt;
+        this.url = url;
+        this.bytes = bytes;
+        this.contentType = contentType;
+        this.userId = userId;
+    }
+
+    public MessageResponseItem(String content, int conversationId, String createdAt, int id, String updatedAt, byte[] bytes, int userId) {
+        this.content = content;
+        this.conversationId = conversationId;
+        this.createdAt = createdAt;
+        this.id = id;
+        this.updatedAt = updatedAt;
+        this.bytes = bytes;
+        this.userId = userId;
+    }
+
+    public MessageResponseItem(String content, int conversationId, String createdAt, int id, String updatedAt, int userId) {
+        this.content = content;
+        this.conversationId = conversationId;
+        this.createdAt = createdAt;
+        this.id = id;
+        this.updatedAt = updatedAt;
+        this.userId = userId;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
+    }
 
     public String getContent() {
         return content;
@@ -53,15 +111,6 @@ public class MessageResponseItem {
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public MessageResponseItem(String content, int conversationId, String createdAt, int id, String updatedAt, int userId) {
-        this.content = content;
-        this.conversationId = conversationId;
-        this.createdAt = createdAt;
-        this.id = id;
-        this.updatedAt = updatedAt;
         this.userId = userId;
     }
 }

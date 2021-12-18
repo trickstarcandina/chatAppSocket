@@ -3,6 +3,7 @@ package com.example.chattogether.ui.home;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chattogether.R;
+import com.example.chattogether.data.api.ApiService;
+import com.example.chattogether.data.auth.TempClient;
 import com.example.chattogether.data.model.Conversation;
+import com.example.chattogether.data.model.ConversationDetail;
+import com.example.chattogether.data.model.ConversationInfo;
 import com.example.chattogether.databinding.FragmentChatsBinding;
-import com.example.chattogether.ui.adapter.ChatAdapter;
+import com.example.chattogether.ui.service.connection.TCPClient;
+import com.server.chat.model.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentChatList extends Fragment {
 
@@ -56,13 +67,9 @@ public class FragmentChatList extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_chats, container, false);
-
         initView();
-
         return binding.getRoot();
-
     }
 
     private void initView() {
@@ -82,10 +89,44 @@ public class FragmentChatList extends Fragment {
 
     @SuppressLint("NotifyDataSetChanged")
     public void getConversation(List<Conversation> conversationList) {
-            conversations.clear();
-            conversations.addAll(conversationList);
-            adapter.notifyDataSetChanged();
+        conversations.clear();
+        conversations.addAll(conversationList);
+        Collections.reverse(conversations);
+
+        for(Conversation conversation: conversations){
+
+            if(!conversation.getIsGroup()){
+                String id = String.valueOf(conversation.getId());
+
+                ApiService apiService = TempClient.getInstance();
+                apiService.getConversationInfo(id).enqueue(new Callback<List<ConversationInfo>>() {
+                    @Override
+                    public void onResponse(Call<List<ConversationInfo>> call, Response<List<ConversationInfo>> response) {
+                        if(response.code() == 200){
+                            assert response.body() != null;
+                            for (ConversationInfo conversationInfo: response.body()){
+                                if(conversationInfo.id != TCPClient.getUser().getId())
+                                {
+                                    conversation.setName(conversationInfo.username);
+                                    conversation.conversationAvatar = conversationInfo.avatarUrl;
+                                    adapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ConversationInfo>> call, Throwable t) {
+                        Log.d("failed", t.toString());
+                    }
+                });
+            }
+
+        }
+        adapter.notifyDataSetChanged();
     }
 
+    public void getConversationInfo(String id){
 
+    }
 }

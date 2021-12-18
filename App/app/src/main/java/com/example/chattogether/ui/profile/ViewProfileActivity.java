@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.chattogether.R;
 import com.example.chattogether.data.old.User;
 import com.example.chattogether.ui.message.MessageActivity;
@@ -42,7 +41,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         Intent i = getIntent();
         userId = i.getStringExtra("userId");
 
-        avatar = findViewById(R.id.avatar);
+        avatar = findViewById(R.id.iv_avatar);
         fullname = findViewById(R.id.fullname);
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
@@ -60,24 +59,7 @@ public class ViewProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
-                if(user.getImageUrl().equals("default"))
-                    avatar.setImageResource(R.drawable.send);
-                else
-                    Glide.with(getApplicationContext()).load(user.getImageUrl()).into(avatar);
 
-                username.setText("@"+user.getUsername());
-                email.setText(user.getEmail());
-                fullname.setText(user.getFullname());
-                location.setText(user.getLocation());
-                live_in.setText(user.getLive_in());
-                education.setText(user.getEducation());
-                relationship.setText(user.getRelationship());
-                if(user.getBackground().equals("default"))
-                    background.setImageResource(R.drawable.bg);
-                else
-                    Glide.with(getApplicationContext()).load(user.getBackground()).into(background);
-                imgUrl = user.getImageUrl();
-                bgUrl = user.getBackground();
             }
 
             @Override

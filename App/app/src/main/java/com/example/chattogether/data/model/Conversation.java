@@ -5,8 +5,8 @@ public class Conversation{
     private String createdAt;
     private String updatedAt;
     private String name = null;
+    public String conversationAvatar;
     private boolean isGroup;
-
 
     // Getter Methods
 

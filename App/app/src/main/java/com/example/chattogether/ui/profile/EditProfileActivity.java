@@ -1,149 +1,189 @@
 package com.example.chattogether.ui.profile;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.chattogether.R;
-import com.example.chattogether.data.old.User;
+import com.example.chattogether.databinding.ActivityEditProfileBinding;
+import com.example.chattogether.databinding.ActivityProfileBinding;
+import com.example.chattogether.ui.dialog.FragmentLoadingDialog;
+import com.example.chattogether.ui.home.HomeActivity;
+import com.example.chattogether.ui.service.connection.TCPClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.server.chat.model.Message;
+import com.server.chat.model.UpdateUserRequest;
 
-import org.jetbrains.annotations.NotNull;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Arrays;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    ImageView avatar, back;
-    EditText username, fullname, email
-            , education, live_in, location;
-    RadioGroup radioGroup;
-    RadioButton single, in_relation;
-    Button save;
-
-    FirebaseUser firebaseUser;
-    DatabaseReference mRef;
-
+    private static final int IMAGE_REQUEST = 1;
+    ActivityEditProfileBinding binding;
+    String avatarUrl = "";
+    byte[] bytesArray;
+    String mimeType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_profile);
+        avatarUrl = getIntent().getStringExtra("avatarUrl");
 
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        initView();
+        initListener();
+    }
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-//            getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-//        }
-//        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//
-//        val attrib = window.attributes
-//        attrib.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+    private void initView() {
 
-        avatar = findViewById(R.id.avatar);
-        username = findViewById(R.id.username);
-        fullname = findViewById(R.id.fullname);
-        email = findViewById(R.id.email);
-        education = findViewById(R.id.education);
-        live_in = findViewById(R.id.live_in);
-        radioGroup =  findViewById(R.id.radio_group);
-        single = findViewById(R.id.single);
-        in_relation = findViewById(R.id.relationship);
-        location = findViewById(R.id.location);
-        save = findViewById(R.id.btn_save);
-        back = findViewById(R.id.back);
-
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        mRef = FirebaseDatabase.getInstance().getReference("MyUser/" + firebaseUser.getUid());
-        mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-
-                if(user.getImageUrl().equals("default")){
-                    avatar.setImageResource(R.drawable.send);
-                } else
-                    Glide.with(getApplicationContext()).load(user.getImageUrl()).into(avatar);
-
-                username.setText(user.getUsername());
-                fullname.setText(user.getFullname());
-                email.setText(user.getEmail());
-                education.setText(user.getEducation());
-                live_in.setText(user.getLive_in());
-                if(user.getRelationship()==null || user.getRelationship().equals("Single")){
-                    single.setChecked(true);
-                } else {
-                    in_relation.setChecked(true);
-                }
-                location.setText(user.getLocation());
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+        HomeActivity.homeViewModel.getUserInfo().observe(this, userResponse -> {
+            binding.etUsername.setText(userResponse.getUsername());
+            binding.etAddress.setText(userResponse.getAddress());
+            binding.etFullName.setText(userResponse.getNickName());
+            if(userResponse.getAvatarUrl() != null){
+                Glide.with(this)
+                        .load("http://34.122.94.78:9000/chat"+userResponse.getAvatarUrl())
+                        .centerInside()
+                        .into(binding.ivAvatar);
             }
         });
+    }
 
-        // save database if has modify
-        save.setOnClickListener(new View.OnClickListener() {
+    private void initListener() {
+        // change avatar
+        binding.ivAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mRef.addValueEventListener(new ValueEventListener() {
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view, Gravity.BOTTOM);
+                popupMenu.inflate(R.menu.avatar_menu);
+                popupMenu.show();
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                        User user = snapshot.getValue(User.class);
-
-                        System.out.println("clicked");
-                        if(!user.getUsername().equals(username.getText().toString()))
-                            mRef.child("username").setValue(username.getText().toString());
-                        if(!user.getEmail().equals(email.getText().toString()))
-                            mRef.child("email").setValue(email.getText().toString());
-                        if(user.getFullname() == null || !user.getFullname().equals(fullname.getText().toString()))
-                            mRef.child("fullname").setValue(fullname.getText().toString());
-                        if(user.getEducation() == null || !user.getEducation().equals(education.getText().toString()))
-                            mRef.child("education").setValue(education.getText().toString());
-                        if(user.getLive_in() == null || !user.getLive_in().equals(live_in.getText().toString()))
-                            mRef.child("live_in").setValue(live_in.getText().toString());
-                        if(user.getLocation() == null || !user.getLocation().equals(location.getText().toString()))
-                            mRef.child("location").setValue(location.getText().toString());
-
-                        int selectedID = radioGroup.getCheckedRadioButtonId();
-                        if(selectedID == R.id.single && (user.getRelationship()==null || !user.getRelationship().equals(single.getText().toString())))
-                            mRef.child("relationship").setValue(single.getText().toString());
-                        else if(selectedID == R.id.relationship &&(user.getRelationship()==null || !user.getRelationship().equals(in_relation.getText().toString())))
-                            mRef.child("relationship").setValue(in_relation.getText().toString());
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (menuItem.getItemId() == R.id.change) {
+                            Intent openGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            startActivityForResult(openGallery, IMAGE_REQUEST);
+                        } else if (menuItem.getItemId() == R.id.view_avatar) {
+                            Intent intent = new Intent(EditProfileActivity.this, ViewImage.class);
+                            intent.putExtra("src", avatarUrl);
+                            startActivity(intent);
+                        }
+                        return false;
                     }
                 });
-                finish();
             }
-
         });
-        back.setOnClickListener(new View.OnClickListener() {
+
+        binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 finish();
             }
         });
 
+        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendUpdateUserRequest();
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == IMAGE_REQUEST) {
+            if (resultCode == RESULT_OK && data != null) {
+                try {
+                    Uri uri = data.getData();
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                        bytesArray = stream.toByteArray();
+                        Log.d("bytesArray", Arrays.toString(bytesArray));
+
+                        ContentResolver cr = getContentResolver();
+                        mimeType = cr.getType(uri);
+
+                        // preview avatar
+                        binding.ivAvatar.setImageBitmap(bitmap);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+
+    void sendUpdateUserRequest(){
+
+        FragmentLoadingDialog fragmentLoadingDialog = new FragmentLoadingDialog();
+        fragmentLoadingDialog.show(getSupportFragmentManager(), "");
+        int userId = TCPClient.getUser().getId();
+        String address = binding.etAddress.getText().toString() ;
+        String username = binding.etUsername.getText().toString();
+        String nickName = binding.etFullName.getText().toString();
+        String password = binding.etPassword.getText().toString();
+        String contentType = "jpg";
+
+        UpdateUserRequest updateUserRequest = new UpdateUserRequest(userId, address, username, nickName, password, bytesArray, contentType);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                TCPClient.sender.sendObject(updateUserRequest);
+                Log.d("update successful", "true");
+                fragmentLoadingDialog.dismiss();
+//                                runOnUiThread(new Runnable() {
+//                                    @SuppressLint("NotifyDataSetChanged")
+//                                    @Override
+//                                    public void run() {
+//                                        recyclerView.smoothScrollToPosition(adapter.getItemCount());
+//                                        adapter.notifyDataSetChanged();
+//                                    }
+//                                });
+                HomeActivity.homeViewModel.updateUserInfo();
+                bytesArray = null;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(EditProfileActivity.this, "Update successful", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }).start();
 
     }
+
+
 }

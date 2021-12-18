@@ -1,275 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.profile.EditProfileActivity">
-    <RelativeLayout
-        android:gravity="center"
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_alignParentStart="true"
-            android:id="@+id/back"
-            android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
-        <TextView
-            android:layout_centerVertical="true"
-            android:layout_marginHorizontal="10dp"
-            android:layout_toRightOf="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit Profile"
-            android:padding="10dp"
-            android:textSize="20sp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/black"
-            />
-        <Button
-            android:layout_centerVertical="true"
-            android:layout_margin="5dp"
-            android:layout_alignParentEnd="true"
-            android:text="Save"
-            android:id="@+id/btn_save"
-            android:background="@drawable/button_decoration"
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.profile.EditProfileActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </Button>
-    </RelativeLayout>
-    <ScrollView
-        style="@style/Base.CardView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/back"
+                android:layout_toRightOf="@+id/back"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="10dp"
+                android:text="Edit Profile"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:padding="5dp"
-        android:src="@drawable/ic_launcher_background"
-        app:civ_border_color="#FBD1D1"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        app:civ_border_width="1dp" />
 
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Username"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/black"
-            />
-        <EditText
-            android:layout_weight="2"
-            android:id="@+id/username"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="username"
-            android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:editable="false"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/black"
-            />
-        <EditText
-            android:layout_weight="2"
-            android:id="@+id/email"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:editable="false"
-            />
-    </LinearLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_launcher_background"
+                app:civ_border_color="#FBD1D1"
+                app:civ_border_width="1dp" />
 
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Fullname"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/black"
-            />
-        <EditText
-            android:layout_weight="2"
-            android:id="@+id/fullname"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Education"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/black"
-            />
-        <EditText
-            android:layout_weight="2"
-            android:id="@+id/education"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Lives in"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/black"
-            />
-        <EditText
-            android:layout_weight="2"
-            android:id="@+id/live_in"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Location"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/black"
-            />
-        <EditText
-            android:layout_weight="2"
-            android:id="@+id/location"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:fontFamily="@font/roboto_regular"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:gravity="center"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Relationship"
-            android:padding="10dp"
-            android:textSize="20sp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/black"
-            />
-
-        <LinearLayout
-            android:layout_weight="1.9"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioGroup
-                android:id="@+id/radio_group"
-                android:orientation="horizontal"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RadioButton
-                    android:id="@+id/single"
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Single"
-                    android:fontFamily="@font/roboto_regular"
-                    />
-                <RadioButton
-                    android:id="@+id/relationship"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="In a relationship"
-                    android:fontFamily="@font/roboto_regular"
-                    />
-            </RadioGroup>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="10dp"
+                    android:text="Username"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_username"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="10dp"
+                    android:text="Full name"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_full_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="10dp"
+                    android:text="Address"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:visibility="visible"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:padding="10dp"
+                    android:text="Password"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="1"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="@dimen/d20"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button_decoration"
+                android:text="Save"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
 
     </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+</layout>

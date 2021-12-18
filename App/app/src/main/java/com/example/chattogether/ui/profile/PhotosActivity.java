@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.chattogether.ui.adapter.ViewPagerAdapter;
+import com.example.chattogether.ui.home.ViewPagerAdapter;
 import com.example.chattogether.R;
 import com.example.chattogether.data.old.User;
 import com.google.android.material.tabs.TabLayout;

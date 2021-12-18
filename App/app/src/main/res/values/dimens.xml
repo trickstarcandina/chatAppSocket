@@ -7,4 +7,9 @@
     <dimen name="d5">5dp</dimen>
     <dimen name="d10">10dp</dimen>
     <dimen name="d20">20dp</dimen>
+    <dimen name="d35">35dp</dimen>
+    <dimen name="d120">120dp</dimen>
+    <dimen name="d180">180dp</dimen>
+    <dimen name="d200">200dp</dimen>
+    <dimen name="d130">130dp</dimen>
 </resources>

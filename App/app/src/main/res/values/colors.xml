@@ -10,4 +10,5 @@
     <color name="app_primary_color">#F63F11</color>
     <color name="blue_color">#7F8CFB</color>
     <color name="message_sender_username">#757575</color>
+    <color name="transparent">#00757575</color>
 </resources>
