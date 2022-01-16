@@ -3,6 +3,7 @@ package com.example.chattogether.ui.auth;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -11,11 +12,19 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.chattogether.R;
+import com.example.chattogether.data.auth.TempClient;
+import com.example.chattogether.data.old.BaseResponse;
+import com.example.chattogether.data.old.DataResponse;
+import com.example.chattogether.data.old.User;
 import com.example.chattogether.ui.service.connection.TCPClient;
 import com.example.chattogether.data.auth.LoginRequest;
 import com.example.chattogether.databinding.ActivityLogin2BindingImpl;
 import com.example.chattogether.ui.dialog.FragmentLoadingDialog;
 import com.example.chattogether.ui.home.HomeActivity;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLogin2BindingImpl binding;
@@ -34,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
-
         binding.btnGoToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,16 +60,17 @@ public class LoginActivity extends AppCompatActivity {
                 String username = binding.username.getText().toString().trim();
                 String password = binding.password.getText().toString().trim();
                 LoginRequest l = new LoginRequest(username,password);
+                AuthViewModel.accessToken = null;
 
                 authViewModel.getAccessToken(l).observe(LoginActivity.this, tokenResponse -> {
                     if (!tokenResponse.isEmpty()) {
                         fragmentLoadingDialog.dismiss();
                         token = tokenResponse;
+                        Log.d("token...", token);
                         // go to home page
                         startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     }
                 });
-
             }
         });
     }

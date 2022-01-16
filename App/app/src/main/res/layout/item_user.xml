@@ -10,7 +10,7 @@
     android:orientation="horizontal">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/avatar"
+        android:id="@+id/iv_avatar"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
@@ -31,16 +31,17 @@
         app:civ_border_width="1dp"
         app:civ_circle_background_color="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/avatar"
+        app:layout_constraintEnd_toEndOf="@+id/iv_avatar"
        />
 
     <LinearLayout
         android:id="@+id/chat_item_layout"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/avatar"
-        tools:layout_editor_absoluteY="2dp">
+        app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -57,15 +58,15 @@
                 android:textColor="#1C1C1C"
                 android:textSize="17sp" />
 
-            <TextView
-                android:id="@+id/textEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/roboto_regular"
-                android:text="TextView"
-                android:textColor="#000000"
-                android:textSize="15sp" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/textEmail"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="3dp"-->
+            <!--                android:fontFamily="@font/roboto_regular"-->
+            <!--                android:text="TextView"-->
+            <!--                android:textColor="#000000"-->
+            <!--                android:textSize="15sp" />-->
         </LinearLayout>
     </LinearLayout>
 

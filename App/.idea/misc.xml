@@ -9,27 +9,37 @@
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/btn_message.xml" value="0.265625" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/btn_register.xml" value="0.3828125" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/button_decoration.xml" value="0.265625" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/cb_selector.xml" value="0.3828125" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/edittext_border.xml" value="0.265625" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/ic__group_add.xml" value="0.3828125" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/ic_back.xml" value="0.265625" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.3828125" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/ic_contact.xml" value="0.3828125" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/ic_edit.xml" value="0.2994791666666667" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/ic_person.xml" value="0.3828125" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/ic_send.xml" value="0.3828125" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/drawable/ic_setting.xml" value="0.265625" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_edit_profile.xml" value="0.2984375" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_login2.xml" value="0.33" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_message.xml" value="0.25" />
-        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_photos.xml" value="0.2984375" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_view_image.xml" value="0.2984375" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/activity_view_profile.xml" value="0.2703125" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/chat_item.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/fragment_add_friend_dialog.xml" value="0.33" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/fragment_avatars.xml" value="0.2984375" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/fragment_chats.xml" value="0.33" />
-        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/fragment_dialog_progress.xml" value="0.3446557971014493" />
-        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/fragment_users.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/fragment_create_group_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/fragment_dialog_progress.xml" value="0.33" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/fragment_users.xml" value="0.25" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/item_chat.xml" value="0.23369565217391305" />
-        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/item_msg_left.xml" value="0.593915343915344" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/item_image_left.xml" value="0.5" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/item_image_right.xml" value="0.22" />
+        <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/item_msg_left.xml" value="0.33" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/item_msg_right.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/item_photo.xml" value="0.2708333333333333" />
         <entry key="..\:/Users/bimbim/Desktop/PTTKHTTT/Learn-Android/ChatTogether/app/src/main/res/layout/item_user.xml" value="0.33" />

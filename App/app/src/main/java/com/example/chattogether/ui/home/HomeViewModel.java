@@ -7,14 +7,14 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.chattogether.data.api.ApiService;
 import com.example.chattogether.data.auth.TempClient;
-import com.example.chattogether.data.auth.UserT;
-import com.example.chattogether.ui.service.connection.TCPClient;
 import com.example.chattogether.data.model.Conversation;
-import com.example.chattogether.data.model.User;
+import com.example.chattogether.data.model.ConversationInfo;
+import com.example.chattogether.data.model.UserResponse;
 import com.example.chattogether.ui.auth.LoginActivity;
+import com.example.chattogether.ui.service.connection.TCPClient;
 import com.server.chat.model.Message;
+import com.server.chat.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,33 +23,31 @@ import retrofit2.Response;
 
 public class HomeViewModel extends ViewModel {
 
-    MutableLiveData<List<UserT>> userList;
-    MutableLiveData<User> user;
-    MutableLiveData<List<Conversation>> conversation = new MutableLiveData<>();
-    TCPClient tcpClient;
     static Thread listen;
+    MutableLiveData<List<User>> userList;
+    MutableLiveData<UserResponse> user;
+    MutableLiveData<List<Conversation>> conversation = new MutableLiveData<>();
+    MutableLiveData<List<ConversationInfo>> conversationInfoList = new MutableLiveData<>();
+    TCPClient tcpClient;
     MutableLiveData<Message> messageReceived;
 
-    public MutableLiveData<List<UserT>> getUserList() {
+    public MutableLiveData<List<User>> getUserList() {
         if (userList == null) {
             userList = new MutableLiveData<>();
-            List<UserT> userTS = new ArrayList<>();
-            userTS.add(new UserT("username", "email@gmail.com"));
-            userTS.add(new UserT("username", "email@gmail.com"));
-            userTS.add(new UserT("username", "email@gmail.com"));
-            userTS.add(new UserT("username", "email@gmail.com"));
-            userTS.add(new UserT("username", "email@gmail.com"));
-
-            userList.setValue(userTS);
         }
         return userList;
+    }
+
+    public MutableLiveData<List<ConversationInfo>> getConversationInfoList(String id) {
+        getConversationInfo(id);
+        return conversationInfoList;
     }
 
     private void getUser() {
         tcpClient = TCPClient.getInstance();
     }
 
-    public MutableLiveData<User> getUserInfo() {
+    public MutableLiveData<UserResponse> getUserInfo() {
         if (user == null) {
             user = new MutableLiveData<>();
             getUserInfoApi();
@@ -57,20 +55,54 @@ public class HomeViewModel extends ViewModel {
         return user;
     }
 
-    private void getUserInfoApi() {
+    public void updateUserInfo() {
         ApiService apiService = TempClient.getInstance();
-        apiService.getUserInfo(LoginActivity.token).enqueue(new Callback<User>() {
+        apiService.getUserInfo(LoginActivity.token).enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                String s = response.toString();
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.body() != null) {
-                    conversation.setValue(response.body().conversations);
                     user.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                String s = t.toString();
+            }
+        });
+    }
+
+    private void getConversationInfo(String id) {
+        ApiService apiService = TempClient.getInstance();
+        apiService.getConversationInfo(id).enqueue(new Callback<List<ConversationInfo>>() {
+            @Override
+            public void onResponse(Call<List<ConversationInfo>> call, Response<List<ConversationInfo>> response) {
+                if (response.code() == 200) {
+                    assert response.body() != null;
+                    conversationInfoList.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ConversationInfo>> call, Throwable t) {
+                Log.d("failed", t.toString());
+            }
+        });
+    }
+
+    public void getUserInfoApi() {
+        ApiService apiService = TempClient.getInstance();
+        apiService.getUserInfo(LoginActivity.token).enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.body() != null) {
+                    conversation.setValue(response.body().getConversations());
+                    user.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 String s = t.toString();
             }
         });
@@ -81,7 +113,7 @@ public class HomeViewModel extends ViewModel {
             messageReceived = new MutableLiveData<>();
 //            if (listen == null) {
 //                listenMessage();
-                Log.d("init get message", "true");
+            Log.d("init get message", "true");
 //            }
         }
         return messageReceived;
@@ -95,13 +127,27 @@ public class HomeViewModel extends ViewModel {
             public void run() {
                 while (true) {
                     Object object = TCPClient.receiver.receiveObject();
-                    if (object instanceof Message && ((Message) object).getUserId() != TCPClient.getUser().getId()) {
-                        Log.d("Received From " + ((Message) object).getUserId() , ((Message) object).getContent());
-                        if(messageReceived != null) {
-                            Log.d("posted","message");
+                    if (object instanceof Message && (((Message) object).getUserId() != TCPClient.getUser().getId() || ((Message) object).getUrl() != null)) {
+                        Log.d("Received From " + ((Message) object).getUserId(), ((Message) object).getContent() == null ? ((Message) object).getUrl() : ((Message) object).getContent());
+                        if (messageReceived != null) {
+                            Log.d("posted", "message");
                             messageReceived.postValue((Message) object);
                         }
                         int a = 3;
+                    } else if (object instanceof List) {
+
+                        if (!((List<?>) object).isEmpty()) {
+                            Object obj = ((List<?>) object).get(0);
+                            if (obj instanceof User) {
+                                if (userList == null) userList = new MutableLiveData<>();
+                                userList.postValue((List<User>) object);
+                            }
+
+                        }
+                    } else if (object instanceof com.server.chat.model.Conversation) {
+                        int a = 3;
+                    } else {
+                        int a = 8;
                     }
                 }
             }
@@ -109,4 +155,6 @@ public class HomeViewModel extends ViewModel {
         listen.start();
     }
 
+    public void updateUserConversation() {
+    }
 }

@@ -1,171 +1,64 @@
 package com.example.chattogether.data.old;
 
 public class User {
-    private String id;
+    private boolean emailIsVerified;
+    private boolean phoneIsVerified;
+    private double coin;
     private String username;
-    private String imageUrl;
+    private String idString;
+    private String displayName;
+    private String birthday;
+    private String avatar;
     private String email;
-    private String fullname;
-    private String location;
-    private String live_in;
-    private String education;
-    private String relationship;
-    private String password;
-    private String background;
-    private String online;
-    private int avatarId;
-    private int backgroundId;
+    private String phone;
+    private String deviceID;
+    private String idCard;
+    private String region;
+    private String address;
+    private String postalCode;
+    private String country;
 
-    public int getAvatarId() {
-        return avatarId;
-    }
-
-    public void setAvatarId(int avatarId) {
-        this.avatarId = avatarId;
-    }
-
-    public int getBackgroundId() {
-        return backgroundId;
-    }
-
-    public void setBackgroundId(int backgroundId) {
-        this.backgroundId = backgroundId;
-    }
-
-    public User(String id, String username, String imageUrl, String email, String fullname, String location, String live_in, String education, String relationship, String password, String background, String online, int avatarId, int backgroundId) {
-        this.id = id;
+    public User(boolean emailIsVerified, boolean phoneIsVerified, double coin, String username, String idString, String displayName, String birthday, String avatar, String email, String phone, String deviceID, String idCard, String region, String address, String postalCode, String country) {
+        this.emailIsVerified = emailIsVerified;
+        this.phoneIsVerified = phoneIsVerified;
+        this.coin = coin;
         this.username = username;
-        this.imageUrl = imageUrl;
+        this.idString = idString;
+        this.displayName = displayName;
+        this.birthday = birthday;
+        this.avatar = avatar;
         this.email = email;
-        this.fullname = fullname;
-        this.location = location;
-        this.live_in = live_in;
-        this.education = education;
-        this.relationship = relationship;
-        this.password = password;
-        this.background = background;
-        this.online = online;
-        this.avatarId = avatarId;
-        this.backgroundId = backgroundId;
+        this.phone = phone;
+        this.deviceID = deviceID;
+        this.idCard = idCard;
+        this.region = region;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.country = country;
     }
 
-    public String getOnline() {
-        return online;
+    public boolean isEmailIsVerified() {
+        return emailIsVerified;
     }
 
-    public void setOnline(String online) {
-        this.online = online;
+    public void setEmailIsVerified(boolean emailIsVerified) {
+        this.emailIsVerified = emailIsVerified;
     }
 
-    public User(String id, String username, String imageUrl, String email, String fullname, String location, String live_in, String education, String relationship, String password, String background, String online) {
-        this.id = id;
-        this.username = username;
-        this.imageUrl = imageUrl;
-        this.email = email;
-        this.fullname = fullname;
-        this.location = location;
-        this.live_in = live_in;
-        this.education = education;
-        this.relationship = relationship;
-        this.password = password;
-        this.background = background;
-        this.online = online;
+    public boolean isPhoneIsVerified() {
+        return phoneIsVerified;
     }
 
-    public String getBackground() {
-        return background;
+    public void setPhoneIsVerified(boolean phoneIsVerified) {
+        this.phoneIsVerified = phoneIsVerified;
     }
 
-    public void setBackground(String background) {
-        this.background = background;
+    public double getCoin() {
+        return coin;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public User(String id, String username, String imageUrl, String email, String fullname, String location, String live_in, String education, String relationship, String password, String bgUrl) {
-        this.id = id;
-        this.username = username;
-        this.imageUrl = imageUrl;
-        this.email = email;
-        this.fullname = fullname;
-        this.location = location;
-        this.live_in = live_in;
-        this.education = education;
-        this.relationship = relationship;
-        this.password = password;
-        this.background = bgUrl;
-    }
-
-    public String getLive_in() {
-        return live_in;
-    }
-
-    public void setLive_in(String live_in) {
-        this.live_in = live_in;
-    }
-
-    public String getEducation() {
-        return education;
-    }
-
-    public void setEducation(String education) {
-        this.education = education;
-    }
-
-    public String getRelationship() {
-        return relationship;
-    }
-
-    public void setRelationship(String relationship) {
-        this.relationship = relationship;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public User(String id, String username, String imageUrl, String email) {
-        this.id = id;
-        this.username = username;
-        this.imageUrl = imageUrl;
-        this.email = email;
-    }
-
-    public User() {
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setCoin(double coin) {
+        this.coin = coin;
     }
 
     public String getUsername() {
@@ -176,11 +69,99 @@ public class User {
         this.username = username;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getIdString() {
+        return idString;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setIdString(String idString) {
+        this.idString = idString;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getDeviceID() {
+        return deviceID;
+    }
+
+    public void setDeviceID(String deviceID) {
+        this.deviceID = deviceID;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

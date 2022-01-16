@@ -1,10 +1,10 @@
 package com.example.chattogether.ui.service.connection;
 
-import com.example.chattogether.data.model.User;
 import com.example.chattogether.ui.home.HomeViewModel;
 import com.example.chattogether.ui.service.OnConnected;
 import com.server.chat.model.LoginRequest;
 import com.server.chat.model.Message;
+import com.example.chattogether.data.model.UserResponse;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -27,7 +27,7 @@ public class TCPClient {
     public static String ip;
     public static Sender sender;
     public static Receiver receiver;
-    public static User user;
+    public static UserResponse userResponse;
     HomeViewModel homeViewModel;
 
 
@@ -160,12 +160,12 @@ public Sender getSender() {
         this.receiver = receiver;
     }
 
-    public static User getUser() {
-        return user;
+    public static UserResponse getUser() {
+        return userResponse;
     }
 
-    public static void setUser(User user) {
-        TCPClient.user = user;
+    public static void setUser(UserResponse userResponse) {
+        TCPClient.userResponse = userResponse;
     }
 
 

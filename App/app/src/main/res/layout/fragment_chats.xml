@@ -22,6 +22,7 @@
             android:padding="7dp"
             android:paddingHorizontal="15dp"
             android:textColor="@color/black"
+            android:focusable="false"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
