@@ -1,0 +1,531 @@
+03/07/2013_13:39:42
+ERROR : Can't create database 'userdetails'; database exists
+ERROR : Table 'address' already exists
+
+04/07/2013_13:52:04
+LOGIN REQUEST 
+from nishant
+LOGIN REQUEST 
+from shreshtha
+LOGIN REQUEST 
+from ajay
+File Transfer Request 
+From ajay to nishant
+10.99.32.82 is the ip of requested user
+LOGIN REQUEST 
+from sankalp
+File Transfer Request 
+From shreshtha to sankalp
+10.99.32.91 is the ip of requested user
+LOGIN REQUEST 
+from shreshtha
+File Transfer Request 
+From shreshtha to sankalp
+User busy on another call
+LOGIN REQUEST 
+from sankalp
+File Transfer Request 
+From sankalp to shreshtha
+10.99.32.79 is the ip of requested user
+Free me Request 
+From ajay
+User Available for other calls
+Logout Request 
+From ajay
+Logout Request 
+From ajay
+LOGIN REQUEST 
+from ajay
+LOGIN REQUEST 
+from shreshtha
+File Transfer Request 
+From shreshtha to ajay
+10.99.32.84 is the ip of requested user
+LOGIN REQUEST 
+from sankalp
+Free me Request 
+From ajay
+User Available for other calls
+LOGIN REQUEST 
+from nishant
+Free me Request 
+From shreshtha
+User Available for other calls
+File Transfer Request 
+From shreshtha to ajay
+10.99.32.84 is the ip of requested user
+File Transfer Request 
+From sankalp to nishant
+10.99.32.82 is the ip of requested user
+Logout Request 
+From ajay
+Logout Request 
+From ajay
+Free me Request 
+From sankalp
+User Available for other calls
+Logout Request 
+From sankalp
+
+04/07/2013_14:05:39
+LOGIN REQUEST 
+from ajay
+LOGIN REQUEST 
+from sankalp
+File Transfer Request 
+From sankalp to ajay
+10.99.32.84 is the ip of requested user
+Free me Request 
+From sankalp
+User Available for other calls
+Free me Request 
+From ajay
+User Available for other calls
+File Transfer Request 
+From ajay to sankalp
+10.99.32.91 is the ip of requested user
+Free me Request 
+From sankalp
+User Available for other calls
+ajay Logged out of server
+LOGIN REQUEST 
+from shreshtha
+Logout Request 
+From sankalp
+Logout Request 
+From sankalp
+LOGIN REQUEST 
+from sankalp
+nishant Logged out of server
+File Transfer Request 
+From sankalp to shreshtha
+10.99.32.79 is the ip of requested user
+
+04/07/2013_14:30:55
+LOGIN REQUEST 
+from ruchit
+Logout Request 
+From ruchit
+Logout Request 
+From ruchit
+LOGIN REQUEST 
+from ajay
+LOGIN REQUEST 
+from ruchit
+File Transfer Request 
+From ajay to ruchit
+10.99.32.132 is the ip of requested user
+Free me Request 
+From ajay
+User Available for other calls
+LOGIN REQUEST 
+from ruchit
+File Transfer Request 
+From ajay to ruchit
+10.99.32.132 is the ip of requested user
+Free me Request 
+From ajay
+User Available for other calls
+LOGIN REQUEST 
+from ajay
+Group Communication Request 
+from ajay to ruchit
+LOGIN REQUEST 
+from nishant
+Free me Request 
+From sankalp
+User Available for other calls
+Group Communication Request 
+from ajay to ruchit
+Group Communication Request 
+from ajay to sankalp
+Logout Request 
+From ajay
+Logout Request 
+From ajay
+Logout Request 
+From ruchit
+Logout Request 
+From ruchit
+LOGIN REQUEST 
+from ajay
+Group Communication Request 
+from sankalp to ruchit
+User is offline
+Group Communication Request 
+from sankalp to ajay
+LOGIN REQUEST 
+from ruchit
+LOGIN REQUEST 
+from manisha
+LOGIN REQUEST 
+from manisha
+Logout Request 
+From sankalp
+Logout Request 
+From sankalp
+File Transfer Request 
+From nishant to manisha
+10.99.32.121 is the ip of requested user
+LOGIN REQUEST 
+from sankalp
+Free me Request 
+From nishant
+User Available for other calls
+Logout Request 
+From nishant
+Logout Request 
+From nishant
+LOGIN REQUEST 
+from ruchit
+Group Communication Request 
+from ajay to ruchit
+Group Communication Request 
+from ajay to sankalp
+Group Communication Request 
+from ruchit to ajay
+LOGIN REQUEST 
+from nishant
+File Transfer Request 
+From nishant to sankalp
+10.99.32.91 is the ip of requested user
+Free me Request 
+From sankalp
+User Available for other calls
+Free me Request 
+From nishant
+User Available for other calls
+File Transfer Request 
+From nishant to sankalp
+10.99.32.91 is the ip of requested user
+Free me Request 
+From nishant
+User Available for other calls
+Free me Request 
+From sankalp
+User Available for other calls
+Logout Request 
+From nishant
+Logout Request 
+From nishant
+LOGIN REQUEST 
+from nishant
+File Transfer Request 
+From sankalp to shreshtha
+User busy on another call
+File Transfer Request 
+From sankalp to nishant
+10.99.32.82 is the ip of requested user
+Logout Request 
+From ajay
+Logout Request 
+From ajay
+Free me Request 
+From nishant
+User Available for other calls
+LOGIN REQUEST 
+from ajay
+Free me Request 
+From sankalp
+User Available for other calls
+Logout Request 
+From nishant
+Logout Request 
+From nishant
+LOGIN REQUEST 
+from shreshtha
+LOGIN REQUEST 
+from ruchit
+Group Communication Request 
+from ajay to ruchit
+LOGIN REQUEST 
+from nishant
+File Transfer Request 
+From nishant to shreshtha
+10.99.32.79 is the ip of requested user
+Free me Request 
+From nishant
+User Available for other calls
+Logout Request 
+From nishant
+Logout Request 
+From nishant
+Group Communication Request 
+from ruchit to ajay
+Group Communication Request 
+from ruchit to ajay
+LOGIN REQUEST 
+from cheena
+LOGIN REQUEST 
+from cheena
+
+04/07/2013_14:37:05
+LOGIN REQUEST 
+from sankalp
+LOGIN REQUEST 
+from nishant
+Logout Request 
+From sankalp
+Logout Request 
+From sankalp
+File Transfer Request 
+From nishant to cheena
+10.99.32.107 is the ip of requested user
+LOGIN REQUEST 
+from sankalp
+File Transfer Request 
+From ajay to sankalp
+10.99.32.91 is the ip of requested user
+Logout Request 
+From ajay
+Logout Request 
+From ajay
+LOGIN REQUEST 
+from ajay
+Logout Request 
+From sankalp
+Logout Request 
+From sankalp
+LOGIN REQUEST 
+from sankalp
+LOGIN REQUEST 
+from raeha
+File Transfer Request 
+From sankalp to ajay
+10.99.32.84 is the ip of requested user
+
+04/07/2013_14:39:13
+Free me Request 
+From nishant
+User Available for other calls
+File Transfer Request 
+From cheena to raeha
+10.105.14.161 is the ip of requested user
+File Transfer Request 
+From cheena to raeha
+User busy on another call
+Logout Request 
+From cheena
+Logout Request 
+From cheena
+Logout Request 
+From raeha
+Logout Request 
+From raeha
+LOGIN REQUEST 
+from cheena
+
+04/07/2013_14:57:11
+LOGIN REQUEST 
+from raeha
+File Transfer Request 
+From cheena to raeha
+10.105.14.161 is the ip of requested user
+Logout Request 
+From cheena
+Logout Request 
+From cheena
+Logout Request 
+From nishant
+Logout Request 
+From nishant
+Logout Request 
+From raeha
+Logout Request 
+From raeha
+LOGIN REQUEST 
+from shreshtha
+LOGIN REQUEST 
+from raeha
+shreshtha Logged out of server
+LOGIN REQUEST 
+from shreshtha
+LOGIN REQUEST 
+from nishant
+Group Communication Request 
+from shreshtha to reaha
+Invalid user 
+Group Communication Request 
+from shreshtha to reaha
+Invalid user 
+Group Communication Request 
+from shreshtha to raeha
+Free me Request 
+From sankalp
+User Available for other calls
+Free me Request 
+From ajay
+User Available for other calls
+Logout Request 
+From nishant
+Logout Request 
+From nishant
+File Transfer Request 
+From shreshtha to raeha
+10.105.14.161 is the ip of requested user
+File Transfer Request 
+From ajay to sankalp
+10.99.32.91 is the ip of requested user
+LOGIN REQUEST 
+from nishant
+LOGIN REQUEST 
+from nishant
+Free me Request 
+From sankalp
+User Available for other calls
+Logout Request 
+From sankalp
+Free me Request 
+From ajay
+User Available for other calls
+File Transfer Request 
+From ajay to nishant
+10.99.32.79 is the ip of requested user
+Free me Request 
+From ajay
+User Available for other calls
+LOGIN REQUEST 
+from cheena
+File Transfer Request 
+From ajay to cheena
+10.99.32.107 is the ip of requested user
+Free me Request 
+From ajay
+User Available for other calls
+Logout Request 
+From ajay
+Logout Request 
+From ajay
+Logout Request 
+From cheena
+Logout Request 
+From cheena
+LOGIN REQUEST 
+from ajay
+LOGIN REQUEST 
+from cheena
+File Transfer Request 
+From ajay to cheena
+10.99.32.107 is the ip of requested user
+LOGIN REQUEST 
+from sankalp
+Free me Request 
+From raeha
+Logout Request 
+From raeha
+User Available for other calls
+LOGIN REQUEST 
+from raeha
+LOGIN REQUEST 
+from shreshtha
+File Transfer Request 
+From shreshtha to raeha
+10.105.14.161 is the ip of requested user
+
+04/07/2013_15:04:20
+Free me Request 
+From ajay
+User Available for other calls
+LOGIN REQUEST 
+from cheena
+Logout Request 
+From ajay
+Logout Request 
+From ajay
+Logout Request 
+From cheena
+Logout Request 
+From cheena
+Logout Request 
+From sankalp
+Logout Request 
+From sankalp
+Free me Request 
+From raeha
+User Available for other calls
+Logout Request 
+From raeha
+LOGIN REQUEST 
+from raeha
+
+16/07/2013_15:18:35
+ERROR : Table 'userdetails.address' doesn't exist
+LOGIN REQUEST 
+from aajay
+LOGIN REQUEST 
+from vivek
+Group Communication Request 
+from aajay to vivek
+File Transfer Request 
+From aajay to vivek
+10.105.14.145 is the ip of requested user
+LOGIN REQUEST 
+from vivek
+Free me Request 
+From aajay
+User Available for other calls
+File Transfer Request 
+From vivek to aajay
+10.105.14.72 is the ip of requested user
+Logout Request 
+From aajay
+Logout Request 
+From aajay
+LOGIN REQUEST 
+from aajay
+LOGIN REQUEST 
+from vivek
+File Transfer Request 
+From vivek to aajay
+10.105.14.72 is the ip of requested user
+LOGIN REQUEST 
+from vivek
+Free me Request 
+From aajay
+User Available for other calls
+File Transfer Request 
+From vivek to aajay
+10.105.14.72 is the ip of requested user
+Free me Request 
+From vivek
+User Available for other calls
+File Transfer Request 
+From vivek to aajay
+User busy on another call
+Free me Request 
+From aajay
+User Available for other calls
+File Transfer Request 
+From vivek to aajay
+10.105.14.72 is the ip of requested user
+LOGIN REQUEST 
+from vivek
+vivek Logged out of server
+LOGIN REQUEST 
+from vivek
+File Transfer Request 
+From aajay to vivek
+10.105.14.243 is the ip of requested user
+Free me Request 
+From aajay
+User Available for other calls
+File Transfer Request 
+From aajay to vivek
+User busy on another call
+Free me Request 
+From vivek
+User Available for other calls
+Logout Request 
+From vivek
+Logout Request 
+From vivek
+File Transfer Request 
+From aajay to vivek
+User is offline
+
+17/07/2013_03:10:37
+ERROR : Access denied for user 'root'@'localhost' (using password: YES)
+ERROR : Access denied for user 'root'@'localhost' (using password: YES)
+ERROR : Can't create database 'userdetails'; database exists
+ERROR : Table 'address' already exists
+
