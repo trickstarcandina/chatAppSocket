@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tạo nhóm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_add_friend"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/row1"
+                app:layout_constraintWidth_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/col1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/row1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <Button
+                android:id="@+id/btn_create_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d20"
+                android:text="Tạo nhóm"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="@+id/rv_add_friend"
+                app:layout_constraintStart_toStartOf="@+id/col1"
+                app:layout_constraintTop_toBottomOf="@+id/rv_add_friend" />
+
+            <Button
+                android:id="@+id/btn_cancel_create_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d20"
+                android:text="Hủy"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toStartOf="@+id/col1"
+                app:layout_constraintStart_toStartOf="@+id/rv_add_friend"
+                app:layout_constraintTop_toBottomOf="@+id/rv_add_friend" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>
